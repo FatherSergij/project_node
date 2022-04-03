@@ -23,7 +23,7 @@ pipeline {
             }
         }   
     
-         stage("Building image from branche nginx-phpfpm") {
+         stage("Building image from branche node") {
             when { 
                 allOf {
                     changeset "src/*"
@@ -41,7 +41,7 @@ pipeline {
         } 
 
         
-        stage("Pushing image to ECR nginx-phpfpm") {
+        stage("Pushing image to ECR node") {
             when { 
                 allOf {
                     changeset "src/*"
@@ -58,7 +58,7 @@ pipeline {
                }
             }
         }
-        stage("Deploy on k8s from nginx-phpfpm") {
+        stage("Deploy on k8s from node") {
             when { 
                 anyOf {
                     allOf {
