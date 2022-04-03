@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 script {
-                       sh "docker build src/ -t ${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                       sh "docker build src/ -t ${REPOSITORY_URI}:${IMAGE_TAG}"
                 }
             }
         } 
@@ -53,7 +53,7 @@ pipeline {
             }            
             steps {
                 script {
-                     sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}"
+                     //sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}"
                      sh "docker push ${REPOSITORY_URI}:${IMAGE_TAG}"
                }
             }
