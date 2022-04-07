@@ -27,7 +27,11 @@ pipeline {
             }
             steps {
                 script {
-                    BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node")
+                    if ("${BRANCH_NAME}" == 'develop') {
+                        BuildPush(BRANCH_NAME, env.GIT_COMMIT, "nginx", BUILD_NUMBER)
+                    } else {
+                        BuildPush(BRANCH_NAME, "latest", "nginx", BUILD_NUMBER)
+                    }
                 }
             }
         } 
