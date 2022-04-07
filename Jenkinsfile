@@ -27,7 +27,7 @@ pipeline {
             }
             steps {
                 script {
-                    BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node")
+                    BuildPush(BRANCH_NAME, env.GIT_COMMIT, "nginx", BUILD_NUMBER)
                 }
             }
         } 
