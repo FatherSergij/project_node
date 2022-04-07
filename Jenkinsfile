@@ -27,7 +27,7 @@ pipeline {
             }
             steps {
                 script {
-                    BuildPush(BRANCH_NAME, "latest", "nginx", BUILD_NUMBER)
+                    BuildPush(BRANCH_NAME, "latest", "node", BUILD_NUMBER)
                 }
             }
         } 
