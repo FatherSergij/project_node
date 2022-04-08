@@ -30,12 +30,10 @@ pipeline {
             }
             steps {
                 script {
-                    if ("${BRANCH_NAME}" == 'develop') {
-                        catchError() {                         
+                    catchError() {                    
+                        if ("${BRANCH_NAME}" == 'develop') {
                             BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node", BUILD_NUMBER)
-                        }
-                    } else {
-                        catchError() {                      
+                        } else {
                             BuildPush(BRANCH_NAME, "latest", "node", BUILD_NUMBER)
                         }
                     }
