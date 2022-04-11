@@ -31,7 +31,6 @@ pipeline {
             steps {
                 script {
                     BuildPush(BRANCH_NAME, "latest", "node", BUILD_NUMBER)
-                    }
                 }
             }
         } 
