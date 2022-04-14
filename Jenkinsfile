@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 script {
-                    BuildPush(BRANCH_NAME, "latest", "node", BUILD_NUMBER)
+                    BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node", BUILD_NUMBER)
                 }
             }
         } 
