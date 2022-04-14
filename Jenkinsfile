@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 script {
-                    BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node", BUILD_NUMBER)
+                    BuildPush(BRANCH_NAME, "latest", "node", BUILD_NUMBER)
                 }
             }
         } 
@@ -54,7 +54,7 @@ pipeline {
             } 
             steps {
                 build job: 'Job_deploy', parameters: [string(name: 'BranchRun_dev', value: env.BRANCH_NAME), 
-                  string(name: 'ImageTag_dev', value: GIT_COMMIT),
+                  string(name: 'ImageTag_dev', value: "latest"),
                   string(name: 'ServiceRun_dev', value: "node")]
             }
         }
