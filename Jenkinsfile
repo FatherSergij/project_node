@@ -20,13 +20,7 @@ pipeline {
     
          stage("Build and push image") {
             when { 
-                allOf {
-                    changeset "src/*"
-                    anyOf {
-                        not { triggeredBy cause: 'UserIdCause' }
-                        branch 'develop'
-                    }
-                }
+                changeset "src/*"
             }
             steps {
                 script {
@@ -38,19 +32,8 @@ pipeline {
 
         stage("Deploy on k8s") {
             when { 
-                anyOf {
-                    allOf {
-                        branch 'develop'
-                        changeset "src/*"
-                    }
-                    allOf {
-                        triggeredBy cause: 'UserIdCause'
-                        anyOf {
-                            branch 'release'
-                            branch 'master'
-                        }
-                    }
-                }
+                branch 'develop'
+                changeset "src/*"
             } 
             steps {
                 build job: 'Job_deploy', parameters: [string(name: 'BranchRun_dev', value: env.BRANCH_NAME), 
