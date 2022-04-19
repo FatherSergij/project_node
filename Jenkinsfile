@@ -24,7 +24,11 @@ pipeline {
             }
             steps {
                 script {
-                    BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node", BUILD_NUMBER)
+                    if (branch == "develop") {
+                        BuildPush(BRANCH_NAME, "latest", "node", BUILD_NUMBER)
+                    } else {
+                        BuildPush(BRANCH_NAME, env.GIT_COMMIT, "node", BUILD_NUMBER)
+                    }
                 }
             }
         } 
